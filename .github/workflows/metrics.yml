@@ -1,0 +1,21 @@
+name: GitHub Metrics
+
+on:
+  schedule:
+    - cron: "0 0 * * *"   # runs daily
+  workflow_dispatch:
+
+jobs:
+  metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate metrics
+        uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          user: bikram73
+          template: classic
+          base: header, activity, community, repositories
+          plugin_lines: yes
+          plugin_lines_sections: base
+          plugin_traffic: yes
