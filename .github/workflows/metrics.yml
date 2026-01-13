@@ -1,8 +1,6 @@
 name: GitHub Metrics
 
 on:
-  schedule:
-    - cron: "0 0 * * *"   # runs daily
   workflow_dispatch:
 
 jobs:
@@ -15,7 +13,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           user: bikram73
           template: classic
-          base: header, activity, community, repositories
+          base: header, repositories
           plugin_lines: yes
-          plugin_lines_sections: base
-          plugin_traffic: yes
