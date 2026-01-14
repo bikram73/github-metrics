@@ -3,14 +3,13 @@ name: GitHub Metrics
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *"   # Daily update
+    - cron: "0 0 * * *"   # runs daily
 
 jobs:
   metrics:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
     steps:
       - name: Generate GitHub Metrics
         uses: lowlighter/metrics@latest
@@ -18,7 +17,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           user: bikram73
 
-          # 🧱 Base sections
+          # Base sections
           template: classic
           base: header, activity, community, repositories
 
@@ -28,11 +27,10 @@ jobs:
           plugin_activity_days: 0
           plugin_activity_filter: all
 
-          # 📦 Repositories with contributions
+          # ⭐ Stars, forks, repos
           plugin_repositories: yes
-          plugin_contributors: yes
 
-          # 📈 Traffic (views + clones + unique)
+          # 📈 TRAFFIC (THIS IS WHAT YOU NEED)
           plugin_traffic: yes
 
           # ➕ Lines of code changed
