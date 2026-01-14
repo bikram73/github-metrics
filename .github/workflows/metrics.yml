@@ -3,13 +3,14 @@ name: GitHub Metrics
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 0 * * *"   # Daily update
 
 jobs:
   metrics:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
     steps:
       - name: Generate GitHub Metrics
         uses: lowlighter/metrics@latest
@@ -17,21 +18,27 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           user: bikram73
 
-          # Base sections (important)
+          # 🧱 Base sections
+          template: classic
           base: header, activity, community, repositories
 
-          # Template
-          template: classic
-
-          # REQUIRED for all-time contributions
+          # 🔁 All-time contributions
           plugin_activity: yes
           plugin_activity_limit: 0
           plugin_activity_days: 0
           plugin_activity_filter: all
 
-          # REQUIRED for repositories with contributions
+          # 📦 Repositories with contributions
           plugin_repositories: yes
+          plugin_contributors: yes
 
-          # Lines of code changed
+          # 📈 Traffic (views + clones + unique)
+          plugin_traffic: yes
+
+          # ➕ Lines of code changed
           plugin_lines: yes
           plugin_lines_sections: base
+
+          # 🎨 Visual improvements
+          config_display: large
+          config_animations: yes
