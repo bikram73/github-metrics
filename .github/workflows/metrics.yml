@@ -8,8 +8,10 @@ on:
 jobs:
   metrics:
     runs-on: ubuntu-latest
+
     permissions:
       contents: write
+
     steps:
       - name: Generate GitHub Metrics
         uses: lowlighter/metrics@latest
@@ -21,22 +23,20 @@ jobs:
           template: classic
           base: header, activity, community, repositories
 
-          # 🔁 All-time contributions
+          # 🔁 Contribution activity (valid values)
           plugin_activity: yes
-          plugin_activity_limit: 0
-          plugin_activity_days: 0
-          plugin_activity_filter: all
+          plugin_activity_limit: 5
 
-          # ⭐ Stars, forks, repos
+          # ⭐ Repositories (stars, forks)
           plugin_repositories: yes
 
-          # 📈 TRAFFIC (THIS IS WHAT YOU NEED)
+          # 📊 Traffic (last 14 days ONLY – GitHub limit)
           plugin_traffic: yes
 
           # ➕ Lines of code changed
           plugin_lines: yes
           plugin_lines_sections: base
 
-          # 🎨 Visual improvements
+          # 🎨 Visual
           config_display: large
           config_animations: yes
